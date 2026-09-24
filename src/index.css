@@ -7,14 +7,13 @@
   --font-marker: 'Permanent Marker', 'Comic Sans MS', cursive;
 
   /* Garage zine palette: warm paper + hard black ink, with the studio's
-     cobalt logo blue and two loud accents. */
+     logo blue and two loud accents. */
   --color-paper: #f4efe6;
   --color-paper-2: #ebe3d3;
   --color-card: #fffaf0;
   --color-ink: #141414;
-  --color-cobalt: #2c3bf0;
   /* the exact blue of the studio's own logo file */
-  --color-logo: #2f3192;
+  --color-cobalt: #2f3192;
   --color-flame: #ff5a1f;
   --color-lemon: #ffd83a;
 }
