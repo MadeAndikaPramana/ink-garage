@@ -13,6 +13,8 @@
   --color-card: #fffaf0;
   --color-ink: #141414;
   --color-cobalt: #2c3bf0;
+  /* the exact blue of the studio's own logo file */
+  --color-logo: #2f3192;
   --color-flame: #ff5a1f;
   --color-lemon: #ffd83a;
 }

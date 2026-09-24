@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { STUDIO, NAV_LINKS } from '../constants'
 import NavLink from './NavLink'
 import Ticker from './Ticker'
+import Wordmark from './Wordmark'
 
 const linkClass = 'hover:text-lemon transition-colors'
 
@@ -17,6 +18,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
         <div className="grid md:grid-cols-[1.4fr_1fr_1fr] gap-12 mb-14">
           <div>
+            <Wordmark plain className="mb-6" />
             <p className="font-marker text-lemon text-xl mb-3">Got an idea?</p>
             <p className="text-paper/75 max-w-sm leading-relaxed mb-6">
               Send us a reference photo on WhatsApp and we&apos;ll get back to you about your piece.
