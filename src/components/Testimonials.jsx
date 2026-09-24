@@ -10,33 +10,48 @@ const TOPICS = [
   { label: 'Nail art', count: 4, cls: 'bg-flame -rotate-1' },
 ]
 
-const rotate = (arr, n) => [...arr.slice(n), ...arr.slice(0, n)]
-
-function ReviewCard({ review }) {
+function ReviewCard({ review, tilt }) {
   return (
-    <figure className="card p-6">
-      <div className="text-flame text-sm mb-3 tracking-widest" aria-label="5 stars">
+    <figure
+      className={`card relative flex w-[300px] sm:w-[370px] shrink-0 flex-col p-6 text-ink ${tilt ? 'rotate-[1.2deg]' : '-rotate-[1.2deg]'}`}
+    >
+      <span aria-hidden="true" className="display absolute -top-4 right-4 text-6xl text-flame leading-none">
+        &ldquo;
+      </span>
+      <div className="mb-3 text-sm tracking-widest text-flame" aria-label="5 stars">
         ★★★★★
       </div>
-      <blockquote className="text-sm text-ink/80 leading-relaxed mb-4 line-clamp-12">
-        &quot;{review.text}&quot;
+      <blockquote className="mb-5 line-clamp-9 text-[15px] leading-relaxed text-ink/85">
+        {review.text}
       </blockquote>
-      <figcaption className="text-xs font-bold uppercase tracking-widest">
+      <figcaption className="mt-auto text-xs font-bold uppercase tracking-widest">
         {review.name} <span className="text-ink/50">· {review.meta}</span>
       </figcaption>
     </figure>
   )
 }
 
-function Column({ reviews, duration, className = '' }) {
+// One endlessly scrolling row. The list is rendered twice (the copy is hidden
+// from assistive tech) so translating by -50% loops without a jump. Pauses on
+// hover/focus so a card can actually be read; users who prefer reduced motion
+// get a plain horizontally scrollable strip instead (see index.css).
+function Row({ reviews, duration, reverse = false, label }) {
+  const track = [...reviews, ...reviews]
   return (
-    <div className={`group relative h-[560px] overflow-hidden ${className}`}>
+    <div
+      className="review-row group overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+      role="region"
+      aria-label={label}
+      tabIndex={0}
+    >
       <div
-        style={{ animation: `marquee-y ${duration}s linear infinite` }}
-        className="flex flex-col gap-5 pb-5 group-hover:[animation-play-state:paused]"
+        className="flex w-max gap-6 py-4 group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused]"
+        style={{ animation: `marquee-x ${duration}s linear infinite ${reverse ? 'reverse' : ''}` }}
       >
-        {[...reviews, ...reviews].map((review, i) => (
-          <ReviewCard key={`${review.name}-${i}`} review={review} />
+        {track.map((review, i) => (
+          <div key={`${review.name}-${i}`} className="flex" aria-hidden={i >= reviews.length ? 'true' : undefined}>
+            <ReviewCard review={review} tilt={i % 2 === 0} />
+          </div>
         ))}
       </div>
     </div>
@@ -45,6 +60,9 @@ function Column({ reviews, duration, className = '' }) {
 
 export default function Testimonials() {
   const hasReviews = TESTIMONIALS.length > 0
+  const half = Math.ceil(TESTIMONIALS.length / 2)
+  const rowA = TESTIMONIALS.slice(0, half)
+  const rowB = TESTIMONIALS.slice(half)
 
   return (
     <section id="reviews" className="py-20 md:py-28 bg-cobalt text-paper border-y-2 border-ink overflow-hidden">
@@ -64,12 +82,7 @@ export default function Testimonials() {
               {STUDIO.googleReviewCount} reviews on Google Maps — read what people say about the
               work, the team and the coffee.
             </p>
-            <a
-              href={STUDIO.mapsLink}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-ghost !border-ink"
-            >
+            <a href={STUDIO.mapsLink} target="_blank" rel="noreferrer" className="btn btn-ghost !border-ink">
               Read the reviews →
             </a>
           </Reveal>
@@ -78,7 +91,7 @@ export default function Testimonials() {
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-lemon mb-5">
               Most mentioned on Google
             </p>
-            <div className="flex flex-wrap gap-4 mb-10">
+            <div className="flex flex-wrap gap-4 mb-2">
               {TOPICS.map((t) => (
                 <span
                   key={t.label}
@@ -90,22 +103,28 @@ export default function Testimonials() {
               ))}
             </div>
             {!hasReviews && (
-              <p className="text-paper/70 max-w-md">
+              <p className="mt-8 text-paper/70 max-w-md">
                 Customer quotes will appear here once they&apos;re added — for now, the full
                 review history is on Google Maps.
               </p>
             )}
           </Reveal>
         </div>
-
-        {hasReviews && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
-            <Column reviews={rotate(TESTIMONIALS, 0)} duration={34} />
-            <Column reviews={rotate(TESTIMONIALS, 1)} duration={42} className="hidden sm:block" />
-            <Column reviews={rotate(TESTIMONIALS, 2)} duration={38} className="hidden lg:block" />
-          </div>
-        )}
       </div>
+
+      {hasReviews && (
+        <div className="mt-14 space-y-2">
+          <Row reviews={rowA} duration={Math.max(40, rowA.length * 7)} label="Customer reviews, row one" />
+          {rowB.length > 0 && (
+            <Row
+              reviews={rowB}
+              duration={Math.max(44, rowB.length * 8)}
+              reverse
+              label="Customer reviews, row two"
+            />
+          )}
+        </div>
+      )}
     </section>
   )
 }

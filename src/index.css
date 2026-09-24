@@ -170,12 +170,12 @@ body::before {
   }
 }
 
-@keyframes marquee-y {
+@keyframes marquee-x {
   from {
-    transform: translateY(0);
+    transform: translateX(0);
   }
   to {
-    transform: translateY(-50%);
+    transform: translateX(-50%);
   }
 }
 
@@ -190,9 +190,17 @@ body::before {
     scroll-behavior: auto;
   }
   [style*='ticker-x'],
-  [style*='marquee-y'],
+  [style*='marquee-x'],
   [style*='spin-slow'],
   .spin-slow {
     animation: none !important;
+  }
+  /* reduced motion: the review rows become a normal scrollable strip */
+  .review-row {
+    overflow-x: auto;
+    mask-image: none;
+  }
+  .review-row > div > div[aria-hidden='true'] {
+    display: none;
   }
 }
