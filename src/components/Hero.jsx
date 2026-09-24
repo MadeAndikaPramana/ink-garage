@@ -56,7 +56,21 @@ function SpinBadge() {
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-5 md:px-6 pt-12 md:pt-16 pb-16 md:pb-24 grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
+      {/* Studio interior, washed out with paper so the copy stays readable,
+          then faded fully into the paper background at the bottom so it hands
+          off seamlessly to the next section. */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <img
+          src="/images/studio-interior.jpg"
+          alt=""
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover object-[50%_42%] opacity-70"
+        />
+        <div className="absolute inset-0 bg-paper/55" />
+        <div className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-b from-transparent via-paper/85 to-paper" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-12 md:pt-16 pb-16 md:pb-24 grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.div variants={rise} className="flex flex-wrap gap-3 mb-8">
             <span className="sticker -rotate-2">
@@ -69,7 +83,7 @@ export default function Hero() {
             <span className="block">Ink.</span>
             <span className="block text-cobalt">Coffee.</span>
             <span
-              className="block text-transparent"
+              className="block text-paper"
               style={{ WebkitTextStroke: '3px var(--color-ink)' }}
             >
               Piercing.
@@ -122,7 +136,7 @@ export default function Hero() {
 
       <Ticker
         items={['Fine line', 'Realism', 'Custom', 'Cover-ups', 'Piercing', 'Nail art', 'Coffee']}
-        className="bg-ink text-lemon border-y-2 border-ink py-3 -rotate-1 scale-[1.02]"
+        className="relative z-10 bg-ink text-lemon border-y-2 border-ink py-3 -rotate-1 scale-[1.02]"
       />
     </section>
   )
