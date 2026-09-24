@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
@@ -10,10 +10,24 @@ if ('scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual'
 }
 
-createRoot(document.getElementById('root')).render(
+const app = (
   <StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )
+
+const rootEl = document.getElementById('root')
+const path = window.location.pathname.replace(/\/+$/, '') || '/'
+
+// Prerendered pages (scripts/prerender.js) stamp their path on the root.
+// Hydrate only when it matches what the browser is actually showing; on a
+// host fallback (e.g. /admin served the home page's HTML) or a ?filter URL,
+// drop the static markup and render fresh instead of mismatching.
+if (rootEl.hasChildNodes() && rootEl.dataset.path === path && !window.location.search) {
+  hydrateRoot(rootEl, app)
+} else {
+  rootEl.replaceChildren()
+  createRoot(rootEl).render(app)
+}

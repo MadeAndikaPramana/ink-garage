@@ -5,28 +5,31 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f4efe6" />
-    <meta name="description" content="Ink Garage Tattoo Studio — tattoos, piercing, nail art and coffee in Canggu, Bali. Book via WhatsApp." />
-    <title>Ink Garage Tattoo Studio — Canggu, Bali</title>
-
-    <!-- Static social-preview tags (this is a client-rendered SPA, so link
-         previews always show these). TODO: add an absolute og:image / og:url
-         once the real domain and a share image exist. -->
+    <!-- seo:start — title, description and social tags. scripts/prerender.js
+         replaces this block per page at build time (adding og:image and,
+         when SITE_URL is set, canonical/og:url). What is here is the
+         fallback used by `npm run dev`. -->
+    <title>Tattoo Studio in Canggu, Bali — Ink Garage</title>
+    <meta name="description" content="Ink Garage Tattoo Studio — tattoos, piercing, nail art and a coffee bar in Canggu, Bali. Book via WhatsApp." />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Ink Garage Tattoo Studio" />
-    <meta property="og:title" content="Ink Garage Tattoo Studio — Canggu, Bali" />
-    <meta property="og:description" content="Ink, coffee, piercing and nail art in Canggu. Book via WhatsApp." />
+    <meta property="og:title" content="Tattoo Studio in Canggu, Bali — Ink Garage" />
+    <meta property="og:description" content="Ink Garage Tattoo Studio — tattoos, piercing, nail art and a coffee bar in Canggu, Bali. Book via WhatsApp." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Ink Garage Tattoo Studio — Canggu, Bali" />
-    <meta name="twitter:description" content="Ink, coffee, piercing and nail art in Canggu. Book via WhatsApp." />
+    <!-- seo:end -->
 
-    <!-- LocalBusiness structured data. Address/phone/rating come from the
-         public Google Maps listing (Sept 2026), unverified with the owner.
-         TODO(owner): confirm address and opening hours before launch. -->
+    <!-- LocalBusiness structured data. Address/phone come from the public
+         Google Maps listing (Sept 2026), unverified with the owner.
+         TODO(owner): confirm address and opening hours before launch.
+         Deliberately no aggregateRating: Google ignores ratings a business
+         marks up about itself, and the number would go stale. Once the real
+         domain exists, add "url", "image" and openingHoursSpecification. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "TattooParlor",
         "name": "Ink Garage Tattoo Studio",
+        "description": "Tattoo studio and coffee bar in Canggu, Bali: fine line, realism, custom tattoos, cover-ups, piercing and nail art.",
         "telephone": "+62 821-2222-699",
         "address": {
           "@type": "PostalAddress",
@@ -36,12 +39,7 @@
           "postalCode": "80351",
           "addressCountry": "ID"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "reviewCount": "113",
-          "bestRating": "5"
-        },
+        "areaServed": "Canggu, Bali",
         "sameAs": ["https://www.instagram.com/inkgaragetattoostudio/"]
       }
     </script>

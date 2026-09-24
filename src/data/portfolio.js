@@ -11,6 +11,16 @@ export const CATEGORIES = ['Fine Line', 'Realism', 'Custom', 'Cover Up', 'Pierci
 // by name via an optional `artist` field.
 export const ARTISTS = BRANCHES[0].team.map((t) => t.name)
 
+// Alt text for a portfolio photo. Demo stock photos say so, so nothing
+// claims stand-in images are the studio's own work.
+export const describeWork = (item) => {
+  const by = item.artist ? ` by ${item.artist}` : ''
+  if (item.demo) return `Sample ${item.category.toLowerCase()} photo (demo)`
+  if (item.category === 'Piercing') return `Piercing at Ink Garage, Canggu${by}`
+  if (item.category === 'Nail Art') return `Nail art at Ink Garage, Canggu${by}`
+  return `${item.category} tattoo${by} at Ink Garage, Canggu`
+}
+
 export const artistToSlug = (name) => name.toLowerCase().replace(/\s+/g, '-')
 
 export const categoryToSlug = (category) => category.toLowerCase().replace(/\s+/g, '-')

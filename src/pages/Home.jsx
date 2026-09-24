@@ -11,7 +11,7 @@ export default function Home() {
   // would leave the tab title stuck on "Our Team" since nothing else resets it
   useDocumentHead({
     description:
-      'Ink Garage Tattoo Studio — tattoos, piercing, nail art and a coffee bar in Canggu, Bali. Book via WhatsApp.',
+      'Tattoo studio and coffee bar in Canggu, Bali. Fine line, realism, custom tattoos, cover-ups and piercing — rated 5.0 on Google. Book via WhatsApp.',
   })
 
   return (

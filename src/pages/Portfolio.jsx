@@ -6,7 +6,7 @@ import PlaceholderImage from '../components/PlaceholderImage'
 import Lightbox from '../components/Lightbox'
 import DemoTag from '../components/DemoTag'
 import { useDocumentHead } from '../hooks/useDocumentHead'
-import { PORTFOLIO, CATEGORIES, ARTISTS, categoryToSlug, artistToSlug } from '../data/portfolio'
+import { PORTFOLIO, CATEGORIES, ARTISTS, categoryToSlug, artistToSlug, describeWork } from '../data/portfolio'
 import { STUDIO } from '../constants'
 
 const FILTERS = ['All', ...CATEGORIES]
@@ -30,7 +30,7 @@ export default function Portfolio() {
   const selectArtist = (a) => setSearchParams(a ? { artist: artistToSlug(a) } : {})
 
   useDocumentHead({
-    title: active === 'All' ? 'Portfolio' : `${active} — Portfolio`,
+    title: active === 'All' ? 'Tattoo Portfolio' : `${active} Portfolio`,
     description:
       active === 'All'
         ? 'Browse tattoo, piercing and nail art work from Ink Garage Tattoo Studio in Canggu, Bali.'
@@ -124,7 +124,7 @@ export default function Portfolio() {
                     aria-label={`View ${it.category} tattoo`}
                     className={`card group relative block w-full h-[300px] sm:h-full overflow-hidden cursor-zoom-in transition-transform duration-150 hover:rotate-0 hover:-translate-y-1 ${TILT[i % TILT.length]}`}
                   >
-                    <PlaceholderImage label={it.category} src={it.src} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
+                    <PlaceholderImage label={it.category} alt={describeWork(it)} src={it.src} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
                     <span className="sticker absolute left-3 bottom-3">{it.category}</span>
                   <DemoTag item={it} />
                   </button>

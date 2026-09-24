@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import { STUDIO } from '../constants'
-import { PORTFOLIO } from '../data/portfolio'
+import { PORTFOLIO, describeWork } from '../data/portfolio'
 import PlaceholderImage from './PlaceholderImage'
 import Ticker from './Ticker'
 import DemoTag from './DemoTag'
@@ -88,6 +88,7 @@ export default function Hero() {
             >
               Piercing.
             </span>
+            <span className="sr-only"> — tattoo studio in Canggu, Bali</span>
           </motion.h1>
 
           <motion.p variants={rise} className="mt-8 max-w-lg text-lg leading-relaxed text-ink/75">
@@ -121,6 +122,7 @@ export default function Hero() {
               <span className="tape -top-3 left-1/2 -translate-x-1/2 rotate-3" />
               <PlaceholderImage
                 label={collage[i].category}
+                alt={describeWork(collage[i])}
                 src={collage[i].src}
                 position="center"
                 className="absolute inset-2"

@@ -11,8 +11,8 @@ const labelClass = 'block text-xs font-bold uppercase tracking-[0.18em] mb-2'
 
 export default function Book() {
   useDocumentHead({
-    title: 'Book a Session',
-    description: 'Book your session at Ink Garage Tattoo Studio in Canggu — fill in a few details and continue straight to WhatsApp.',
+    title: 'Book a Tattoo in Canggu',
+    description: 'Book your tattoo or piercing at Ink Garage Tattoo Studio in Canggu, Bali — fill in a few details and continue straight to WhatsApp.',
   })
 
   const [form, setForm] = useState({

@@ -51,8 +51,8 @@ const AFTERCARE = [
 
 export default function Pricing() {
   useDocumentHead({
-    title: 'Pricing & FAQ',
-    description: 'What affects tattoo pricing at Ink Garage Tattoo Studio in Canggu, plus answers to common questions.',
+    title: 'Tattoo Pricing & FAQ',
+    description: 'What affects tattoo pricing at Ink Garage Tattoo Studio in Canggu, Bali, plus answers to common questions.',
   })
 
   return (

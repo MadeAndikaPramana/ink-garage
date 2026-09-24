@@ -5,7 +5,7 @@ export default function Wordmark({ plain = false, className = '' }) {
   const img = (
     <img
       src="/images/inkgarage-logo-white.png"
-      alt="Ink Garage"
+      alt="Ink Garage Tattoo Studio"
       width="640"
       height="67"
       className={plain ? `h-8 md:h-10 w-auto ${className}` : 'h-6 md:h-7 w-auto'}

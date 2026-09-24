@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'motion/react'
+import { describeWork } from '../data/portfolio'
 
 // Full-photo preview. `index` is null when closed. Rendered through a portal
 // because gallery tiles sit inside transformed (Reveal/motion) wrappers,
@@ -34,6 +35,9 @@ export default function Lightbox({ items, index, onClose, onNavigate }) {
   const round =
     'absolute w-12 h-12 border-2 border-ink bg-lemon text-ink text-xl font-bold shadow-[3px_3px_0_var(--color-ink)] hover:bg-flame transition-colors'
 
+  // no document while prerendering; the lightbox only ever opens client-side
+  if (typeof document === 'undefined') return null
+
   return createPortal(
     <AnimatePresence>
       {current && (
@@ -52,7 +56,7 @@ export default function Lightbox({ items, index, onClose, onNavigate }) {
           <motion.img
             key={current.id}
             src={current.src}
-            alt={`${current.category} tattoo`}
+            alt={describeWork(current)}
             initial={{ opacity: 0, scale: 0.97, rotate: -1 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.25 }}

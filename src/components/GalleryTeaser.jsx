@@ -4,7 +4,7 @@ import Reveal from './Reveal'
 import PlaceholderImage from './PlaceholderImage'
 import Lightbox from './Lightbox'
 import DemoTag from './DemoTag'
-import { PORTFOLIO } from '../data/portfolio'
+import { PORTFOLIO, describeWork } from '../data/portfolio'
 import { STUDIO } from '../constants'
 
 // Newest first — ids are assigned sequentially by the admin uploader, so the
@@ -54,7 +54,7 @@ export default function GalleryTeaser() {
                   aria-label={`View ${it.category} tattoo`}
                   className={`card group relative block w-full h-[280px] sm:h-full overflow-hidden text-left cursor-zoom-in transition-transform duration-150 hover:rotate-0 hover:-translate-y-1 ${TILT[i % TILT.length]}`}
                 >
-                  <PlaceholderImage label={it.category} src={it.src} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
+                  <PlaceholderImage label={it.category} alt={describeWork(it)} src={it.src} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
                   <span className="sticker absolute left-3 bottom-3">{it.category}</span>
                   <DemoTag item={it} />
                 </button>

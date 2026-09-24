@@ -3,7 +3,7 @@ import Reveal from '../components/Reveal'
 import { useDocumentHead } from '../hooks/useDocumentHead'
 
 export default function NotFound() {
-  useDocumentHead({ title: 'Page Not Found' })
+  useDocumentHead({ title: 'Page Not Found', noindex: true })
 
   return (
     <section className="min-h-[70vh] flex items-center justify-center px-6 py-20">

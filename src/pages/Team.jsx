@@ -6,7 +6,7 @@ import Lightbox from '../components/Lightbox'
 import DemoTag from '../components/DemoTag'
 import { useDocumentHead } from '../hooks/useDocumentHead'
 import { BRANCHES } from '../data/branches'
-import { PORTFOLIO, artistToSlug } from '../data/portfolio'
+import { PORTFOLIO, artistToSlug, describeWork } from '../data/portfolio'
 import { STUDIO } from '../constants'
 
 const studio = BRANCHES[0]
@@ -18,8 +18,8 @@ export default function Team() {
   const [preview, setPreview] = useState({ artist: null, index: null })
 
   useDocumentHead({
-    title: 'The Artists',
-    description: `Meet the artists at ${studio.name} in Canggu, Bali, and see their work.`,
+    title: 'Tattoo Artists in Canggu',
+    description: `Meet the tattoo artists at ${studio.name} in Canggu, Bali, and see their work.`,
   })
 
   const worksOf = (name) => PORTFOLIO.filter((p) => p.artist === name)
@@ -70,7 +70,7 @@ export default function Team() {
                           aria-label={`View ${w.category} tattoo by ${member.name}`}
                           className="card group relative block h-52 sm:h-60 overflow-hidden cursor-zoom-in transition-transform duration-150 hover:-translate-y-1"
                         >
-                          <PlaceholderImage label={w.category} src={w.src} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
+                          <PlaceholderImage label={w.category} alt={describeWork(w)} src={w.src} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
                           <span className="sticker absolute left-2 bottom-2 !text-[10px]">{w.category}</span>
                           <DemoTag item={w} />
                         </button>
