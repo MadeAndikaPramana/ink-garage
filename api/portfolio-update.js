@@ -85,7 +85,13 @@ export default async function handler(req, res) {
       const base = slugifyFilename(item.filename) || 'photo'
       const filename = `${base}-${stamp}-${index}.${ext}`
       additionEntries.push({ path: `public/images/${filename}`, base64: item.base64 })
-      newItems.push({ id: nextId++, category: item.category, src: `/images/${filename}` })
+      const artist = typeof item.artist === 'string' ? item.artist.trim().slice(0, 40) : ''
+      newItems.push({
+        id: nextId++,
+        category: item.category,
+        ...(artist ? { artist } : {}),
+        src: `/images/${filename}`,
+      })
     })
 
     const finalItems = [...remaining, ...newItems]

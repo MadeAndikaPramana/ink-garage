@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { PORTFOLIO as INITIAL_PORTFOLIO, CATEGORIES } from '../data/portfolio'
+import { PORTFOLIO as INITIAL_PORTFOLIO, CATEGORIES, ARTISTS } from '../data/portfolio'
 
 // Resizes/compresses a File client-side before it's base64-encoded and sent
 // to the API — keeps request payloads well under Vercel's body-size limit
@@ -103,13 +103,17 @@ export default function Admin() {
     const files = Array.from(e.target.files || [])
     setPendingFiles((prev) => [
       ...prev,
-      ...files.map((file) => ({ file, category: CATEGORIES[0], previewUrl: URL.createObjectURL(file) })),
+      ...files.map((file) => ({ file, category: CATEGORIES[0], artist: '', previewUrl: URL.createObjectURL(file) })),
     ])
     e.target.value = ''
   }
 
   const updatePendingCategory = (index, category) => {
     setPendingFiles((prev) => prev.map((p, i) => (i === index ? { ...p, category } : p)))
+  }
+
+  const updatePendingArtist = (index, artist) => {
+    setPendingFiles((prev) => prev.map((p, i) => (i === index ? { ...p, artist } : p)))
   }
 
   const removePending = (index) => {
@@ -129,7 +133,7 @@ export default function Admin() {
       const additions = await Promise.all(
         pendingFiles.map(async (p) => {
           const { base64 } = await resizeImageFile(p.file)
-          return { category: p.category, filename: p.file.name, base64 }
+          return { category: p.category, artist: p.artist, filename: p.file.name, base64 }
         }),
       )
       const deletions = [...deleteIds].map((id) => ({ id }))
@@ -209,7 +213,7 @@ export default function Admin() {
                   marked ? 'opacity-100 bg-cobalt/85' : 'opacity-0 hover:opacity-100 bg-ink/70'
                 }`}
               >
-                {marked ? 'Marked for deletion' : `Delete · ${it.category}`}
+                {marked ? 'Marked for deletion' : `Delete · ${it.category}${it.artist ? ` · ${it.artist}` : ''}`}
               </div>
             </button>
           )
@@ -235,6 +239,18 @@ export default function Admin() {
                 {CATEGORIES.map((c) => (
                   <option key={c} value={c}>
                     {c}
+                  </option>
+                ))}
+              </select>
+              <select
+                value={p.artist}
+                onChange={(e) => updatePendingArtist(i, e.target.value)}
+                className="field !py-1.5 !px-2 !text-xs mt-2"
+              >
+                <option value="">No artist</option>
+                {ARTISTS.map((a) => (
+                  <option key={a} value={a}>
+                    {a}
                   </option>
                 ))}
               </select>

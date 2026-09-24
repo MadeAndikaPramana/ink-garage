@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import PlaceholderImage from './PlaceholderImage'
 import Lightbox from './Lightbox'
+import DemoTag from './DemoTag'
 import { PORTFOLIO } from '../data/portfolio'
 import { STUDIO } from '../constants'
 
@@ -55,6 +56,7 @@ export default function GalleryTeaser() {
                 >
                   <PlaceholderImage label={it.category} src={it.src} className="absolute inset-0 transition-transform duration-500 group-hover:scale-105" />
                   <span className="sticker absolute left-3 bottom-3">{it.category}</span>
+                  <DemoTag item={it} />
                 </button>
               </Reveal>
             ))}

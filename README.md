@@ -27,7 +27,7 @@ Sept 2026), **not** from the owner. Confirm before launch (search `TODO`):
 | Artists | Only first names ("Zoro", "Jung") from IG highlights; roles/bios assumed/empty | `src/data/branches.js` |
 | Rating | 5.0 from 113 Google reviews (read from Maps) | `src/constants.js`, `index.html` |
 | Review quotes | None supplied — section shows Google's rating + topic chips | `src/data/testimonials.js` |
-| Portfolio photos | None — placeholders until real files are supplied | `src/data/portfolio.json` (use `/admin` or `scripts/import-portfolio.js`) |
+| Portfolio photos | **Demo only** — 9 free-license Unsplash stock photos flagged `demo: true` (shown with a "Demo photo" tag) and split between Zoro and Jung just to demo per-artist galleries. NOT their work. Delete via `/admin` and upload real files. | `src/data/portfolio.json`, `public/images/demo-*.jpg` |
 | Logo | Not supplied — text wordmark in `Wordmark.jsx` | `src/components/Wordmark.jsx` |
 | Domain / OG image | Not decided | `index.html` |
 

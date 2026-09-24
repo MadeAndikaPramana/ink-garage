@@ -4,6 +4,7 @@ import { STUDIO } from '../constants'
 import { PORTFOLIO } from '../data/portfolio'
 import PlaceholderImage from './PlaceholderImage'
 import Ticker from './Ticker'
+import DemoTag from './DemoTag'
 
 const COLLAGE_LABELS = ['Fine Line', 'Realism', 'Custom']
 const collage = COLLAGE_LABELS.map(
@@ -110,6 +111,7 @@ export default function Hero() {
                 position="center"
                 className="absolute inset-2"
               />
+              <DemoTag item={collage[i]} />
             </motion.div>
           ))}
           <div className="absolute -bottom-2 right-6 z-20 rotate-6">

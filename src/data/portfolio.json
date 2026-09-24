@@ -1,3 +1,67 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": 1,
+      "category": "Fine Line",
+      "artist": "Zoro",
+      "demo": true,
+      "src": "/images/demo-wrist-script-leaf.jpg"
+    },
+    {
+      "id": 2,
+      "category": "Fine Line",
+      "artist": "Zoro",
+      "demo": true,
+      "src": "/images/demo-tiny-mountains.jpg"
+    },
+    {
+      "id": 3,
+      "category": "Fine Line",
+      "artist": "Zoro",
+      "demo": true,
+      "src": "/images/demo-figure-wrist.jpg"
+    },
+    {
+      "id": 4,
+      "category": "Custom",
+      "artist": "Zoro",
+      "demo": true,
+      "src": "/images/demo-vegvisir-forearm.jpg"
+    },
+    {
+      "id": 5,
+      "category": "Custom",
+      "artist": "Jung",
+      "demo": true,
+      "src": "/images/demo-traditional-sleeves.jpg"
+    },
+    {
+      "id": 6,
+      "category": "Custom",
+      "artist": "Jung",
+      "demo": true,
+      "src": "/images/demo-full-back.jpg"
+    },
+    {
+      "id": 7,
+      "category": "Custom",
+      "artist": "Jung",
+      "demo": true,
+      "src": "/images/demo-skull-sleeve.jpg"
+    },
+    {
+      "id": 8,
+      "category": "Realism",
+      "artist": "Jung",
+      "demo": true,
+      "src": "/images/demo-blackgrey-sleeve.jpg"
+    },
+    {
+      "id": 9,
+      "category": "Realism",
+      "artist": "Jung",
+      "demo": true,
+      "src": "/images/demo-blackgrey-forearm.jpg"
+    }
+  ]
 }

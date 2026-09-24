@@ -61,7 +61,7 @@ export default function Lightbox({ items, index, onClose, onNavigate }) {
           />
 
           <p className="sticker absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none">
-            {current.category} · {index + 1} / {count}
+            {current.category}{current.artist ? ` · ${current.artist}` : ''} · {index + 1} / {count}{current.demo ? ' · demo photo' : ''}
           </p>
 
           <button
