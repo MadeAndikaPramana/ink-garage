@@ -1,0 +1,52 @@
+# Ink Garage Tattoo Studio — Canggu, Bali
+
+Website for Ink Garage Tattoo Studio (tattoo, piercing, nail art and a coffee
+bar in Canggu). React 19 + Vite + Tailwind v4 + react-router-dom + `motion`,
+with a small GitHub-API-backed admin panel at `/admin` for managing portfolio
+photos without a database. Visual style: "garage zine" — warm paper, hard
+outlines, offset shadows, stickers, tape and a ticker strip; palette taken from
+the studio's cobalt logo.
+
+## Quick start
+
+```bash
+npm install
+npm run dev
+```
+
+## What's real vs. placeholder
+
+Built from public research (Google Maps listing + the studio's Instagram,
+Sept 2026), **not** from the owner. Confirm before launch (search `TODO`):
+
+| Item | Status | Where |
+|---|---|---|
+| Address | Maps says Jl. Raya Canggu No.162A; an IG post mentions "Jl. Pantai Berawa" — unresolved | `src/data/branches.js`, `index.html` |
+| Opening hours | Conflicting sources (10–20 vs 10–18; Maps showed closed on a Thursday) | `src/data/branches.js` |
+| Phone / WhatsApp | From the Maps listing (`0821-2222-699`) | `src/data/branches.js` |
+| Artists | Only first names ("Zoro", "Jung") from IG highlights; roles/bios assumed/empty | `src/data/branches.js` |
+| Rating | 5.0 from 113 Google reviews (read from Maps) | `src/constants.js`, `index.html` |
+| Review quotes | None supplied — section shows Google's rating + topic chips | `src/data/testimonials.js` |
+| Portfolio photos | None — placeholders until real files are supplied | `src/data/portfolio.json` (use `/admin` or `scripts/import-portfolio.js`) |
+| Logo | Not supplied — text wordmark in `Wordmark.jsx` | `src/components/Wordmark.jsx` |
+| Domain / OG image | Not decided | `index.html` |
+
+No photos, reviews or claims were scraped or invented.
+
+## Admin panel (`/admin`)
+
+Requires these environment variables on the deploy target (Vercel):
+
+- `ADMIN_PASSWORD` — shared password for the panel
+- `GITHUB_TOKEN` — token with `contents:write` on this repo
+- `GITHUB_USERNAME` / `REPO_NAME` — this repo's owner/name
+- `GITHUB_BRANCH` — optional, defaults to `main`
+
+The project must live at the repository root (the API reads
+`src/data/portfolio.json` and writes `public/images/` at the repo root).
+Each save creates one commit via the GitHub Trees API.
+
+## Deploy
+
+Vercel (`vercel.json`, `/api` functions). `wrangler.json` only serves static
+files, so the admin API will not run on Cloudflare.
