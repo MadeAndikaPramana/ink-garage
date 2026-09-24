@@ -9,7 +9,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-paper/95 backdrop-blur-sm border-b-2 border-ink">
+    <header className="sticky top-0 z-50 bg-paper border-b-2 border-ink">
       <nav className="max-w-7xl mx-auto flex items-center justify-between gap-4 px-4 md:px-6 py-3">
         <Link to="/" aria-label="Ink Garage home" onClick={() => setOpen(false)}>
           <Wordmark />

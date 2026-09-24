@@ -39,11 +39,16 @@ function Row({ reviews, duration, reverse = false, label }) {
   const track = [...reviews, ...reviews]
   return (
     <div
-      className="review-row group overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+      className="review-row group relative overflow-hidden"
       role="region"
       aria-label={label}
       tabIndex={0}
     >
+      {/* Edge fades are two static gradient strips (the section is solid cobalt)
+          instead of a CSS mask: a mask on a continuously animating row makes the
+          GPU re-mask the whole row every frame, which is what janks on phones. */}
+      <span aria-hidden="true" className="fade-edge pointer-events-none absolute inset-y-0 left-0 z-10 w-[5%] bg-gradient-to-r from-cobalt to-transparent" />
+      <span aria-hidden="true" className="fade-edge pointer-events-none absolute inset-y-0 right-0 z-10 w-[5%] bg-gradient-to-l from-cobalt to-transparent" />
       <div
         className="flex w-max gap-6 py-4 group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused]"
         style={{ animation: `marquee-x ${duration}s linear infinite ${reverse ? 'reverse' : ''}` }}
